@@ -5,12 +5,12 @@ const CropDisease = require('../models/CropDisease');
 const router = express.Router();
 const ImgCounter = require('../models/ImgCounter');
 const User = require('../models/User');
-
+const os = require('os');
 
 var img_upload_points = 10;
 // Set up Multer for handling file uploads
 const storage = multer.diskStorage({
-    destination: 'uploads/',
+    destination: os.tmpdir(), // Use the system's temporary directory
     filename: (req, file, callback) => {
         callback(null, 'image-' + Date.now() + path.extname(file.originalname));
     },
